@@ -1,44 +1,43 @@
-import express from 'express';
-import dotenv from 'dotenv';
-import cors from 'cors';
-import { connectDB } from './config/db.js';
-import authRoutes from './routes/authRoutes.js';
-import serviceRoutes from './routes/serviceRoutes.js';
-import bookingRoutes from './routes/bookingRoutes.js';
+// import express from 'express';
+// import dotenv from 'dotenv';
+// import cors from 'cors';
+// import { connectDB } from './config/db.js';
+// import authRoutes from './routes/authRoutes.js';
+// import serviceRoutes from './routes/serviceRoutes.js';
+// import bookingRoutes from './routes/bookingRoutes.js';
 
-dotenv.config();
-connectDB();
+// dotenv.config();
+// connectDB();
 
-const app = express();
+// const app = express();
 
-// Enhanced CORS configuration
-const corsOptions = {
-  origin: [
-    "https://frontend-or7r.vercel.app",
-    "http://localhost:3000" // For local development
-  ],
-  credentials: true,
-  methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
-  allowedHeaders: ["Content-Type", "Authorization"],
-  optionsSuccessStatus: 204
-};
 
-app.use(cors(corsOptions));
-app.use(express.json());
+// const corsOptions = {
+//   origin: [
+//     "https://frontend-or7r.vercel.app",
+//     "http://localhost:3000" // For local development
+//   ],
+//   credentials: true,
+//   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
+//   allowedHeaders: ["Content-Type", "Authorization"],
+//   optionsSuccessStatus: 204
+// };
 
-// API routes
-app.get('/api', (req, res) => res.send('✅ Backend is running'));
-app.use('/api/auth', authRoutes);
-app.use('/api/services', serviceRoutes);
-app.use('/api/bookings', bookingRoutes);
+// app.use(cors(corsOptions));
+// app.use(express.json());
 
-// Error handling
-app.use((err, req, res, next) => {
-  console.error(err.stack);
-  res.status(500).json({ error: 'Internal Server Error' });
-});
+// app.get('/api', (req, res) => res.send('✅ Backend is running'));
+// app.use('/api/auth', authRoutes);
+// app.use('/api/services', serviceRoutes);
+// app.use('/api/bookings', bookingRoutes);
 
-export default app;
+
+// app.use((err, req, res, next) => {
+//   console.error(err.stack);
+//   res.status(500).json({ error: 'Internal Server Error' });
+// });
+
+// export default app;
 
 
 // Export for Vercel
@@ -46,27 +45,30 @@ export default app;
 
 
 
-// const express = require('express');
-// const dotenv = require('dotenv');
-// const cors = require('cors');
-// const connectDB = require('./config/db');
-// const serverless = require('serverless-http');
+const express = require('express');
+const dotenv = require('dotenv');
+const cors = require('cors');
+const connectDB = require('./config/db');
+const serverless = require('serverless-http');
 
+dotenv.config();
+connectDB();
 
-// dotenv.config();
+const app = express();
 
+app.use(cors({
+  origin: ['https://frontend-or7r.vercel.app', 'http://localhost:3000'],
+  credentials: true
+}));
 
-// connectDB();
+app.use(express.json());
 
-// const app = express();
+app.get('/api', (req, res) => {
+  res.send('✅ Backend is running on Vercel!');
+});
 
-// app.use(cors());
-// app.use(express.json());
+app.use('/api/auth', require('./routes/authRoutes'));
+app.use('/api/services', require('./routes/serviceRoutes'));
+app.use('/api/bookings', require('./routes/bookingRoutes'));
 
-
-// app.use('/api/auth', require('./routes/authRoutes'));
-// app.use('/api/services', require('./routes/serviceRoutes'));
-// app.use('/api/bookings', require('./routes/bookingRoutes'));
-
-
-// module.exports = serverless(app);
+module.exports = serverless(app);
