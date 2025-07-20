@@ -2,7 +2,7 @@
   "version": 2,
   "builds": [
     {
-      "src": "index.js",
+      "src": "api/index.js",
       "use": "@vercel/node"
     }
   ],
@@ -11,11 +11,11 @@
       "src": "/api/(.*)",
       "headers": {
         "Access-Control-Allow-Origin": "https://frontend-or7r.vercel.app",
-        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE",
+        "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, OPTIONS",
         "Access-Control-Allow-Headers": "Content-Type, Authorization",
         "Access-Control-Allow-Credentials": "true"
       },
-      "dest": "/index"
+      "dest": "/api/index.js"
     }
   ]
 }
