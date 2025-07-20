@@ -9,7 +9,7 @@
   "routes": [
     {
       "src": "/api/(.*)",
-      "dest": "/index.js",
+      "dest": "/index",
       "headers": {
         "Access-Control-Allow-Origin": "https://frontend-or7r.vercel.app",
         "Access-Control-Allow-Methods": "GET, POST, PUT, DELETE, PATCH, OPTIONS",
@@ -20,7 +20,7 @@
     },
     {
       "src": "/(.*)",
-      "dest": "/index.js"
+      "dest": "/index"
     }
   ]
 }
