@@ -26,4 +26,4 @@ app.use('/api/services', require('../routes/serviceRoutes'));
 app.use('/api/bookings', require('../routes/bookingRoutes'));
 
 // Export properly for Vercel
-module.exports = { handler: serverless(app) }; // ✅ FIXED EXPORT
+module.exports = serverless(app);
