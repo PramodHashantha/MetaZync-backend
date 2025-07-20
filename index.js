@@ -49,7 +49,6 @@ const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
 const connectDB = require('./config/db');
-const serverless = require('serverless-http');
 
 dotenv.config();
 connectDB();
@@ -59,12 +58,16 @@ const app = express();
 app.use(cors());
 app.use(express.json());
 
+// API routes
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/services', require('./routes/serviceRoutes'));
 app.use('/api/bookings', require('./routes/bookingRoutes'));
 
+// Health check
 app.get('/', (req, res) => {
-  res.send('API is running successfully 🚀');
+  res.send('🚀 API is running on Vercel');
 });
 
-module.exports.handler = serverless(app); 
+// ✅ Export as default for Vercel
+module.exports = app;
+
