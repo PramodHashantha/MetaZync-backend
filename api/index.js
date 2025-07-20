@@ -8,7 +8,7 @@ const serverless = require('serverless-http');
 dotenv.config();
 
 // Connect to MongoDB
-// connectDB();
+connectDB();
 
 const app = express();
 
@@ -20,14 +20,10 @@ app.get('/', (req, res) => {
   res.send('API is running...');
 });
 
-app.get('/api/ping', (req, res) => {
-  res.json({ pong: true });
-});
-
 // API routes
-// app.use('/api/auth', require('../routes/authRoutes'));
-// app.use('/api/services', require('../routes/serviceRoutes'));
-// app.use('/api/bookings', require('../routes/bookingRoutes'));
+app.use('/api/auth', require('../routes/authRoutes'));
+app.use('/api/services', require('../routes/serviceRoutes'));
+app.use('/api/bookings', require('../routes/bookingRoutes'));
 
 // Export properly for Vercel
 module.exports = serverless(app);
