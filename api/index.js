@@ -23,7 +23,7 @@ app.use(cors(corsOptions));
 app.use(express.json());
 
 // Root Test Route
-app.get('/', (req, res) => {
+app.get('/api/', (req, res) => {
   res.send('✅ Backend deployed successfully on Vercel');
 });
 
