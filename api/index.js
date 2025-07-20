@@ -21,9 +21,9 @@ app.get('/', (req, res) => {
 });
 
 // API routes
-app.use('/api/auth', require('../routes/authRoutes'));
-app.use('/api/services', require('../routes/serviceRoutes'));
-app.use('/api/bookings', require('../routes/bookingRoutes'));
+// app.use('/api/auth', require('../routes/authRoutes'));
+// app.use('/api/services', require('../routes/serviceRoutes'));
+// app.use('/api/bookings', require('../routes/bookingRoutes'));
 
 // Export properly for Vercel
 module.exports = serverless(app);
