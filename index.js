@@ -56,19 +56,15 @@ connectDB();
 
 const app = express();
 
-app.use(cors({
-  origin: ['https://frontend-or7r.vercel.app', 'http://localhost:3000'],
-  credentials: true
-}));
-
+app.use(cors());
 app.use(express.json());
-
-app.get('/api', (req, res) => {
-  res.send('✅ Backend is running on Vercel!');
-});
 
 app.use('/api/auth', require('./routes/authRoutes'));
 app.use('/api/services', require('./routes/serviceRoutes'));
 app.use('/api/bookings', require('./routes/bookingRoutes'));
 
-module.exports = serverless(app);
+app.get('/', (req, res) => {
+  res.send('API is running successfully 🚀');
+});
+
+module.exports.handler = serverless(app); 
