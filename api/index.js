@@ -14,12 +14,12 @@ const app = express();
 
 // CORS setup
 const corsOptions = {
-  origin: ["https://frontend-or7r.vercel.app/api"],
+  origin: ["https://frontend-or7r.vercel.app"],
   credentials: true,
   methods: ["GET", "POST", "PUT", "DELETE", "OPTIONS"],
   allowedHeaders: ["Content-Type", "Authorization"],
 };
-app.use(cors(corsOptions));
+app.options('*', cors(corsOptions));
 app.use(express.json());
 
 // Root Test Route
