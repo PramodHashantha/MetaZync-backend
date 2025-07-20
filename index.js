@@ -1,14 +1,14 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const connectDB = require('./config/db');
+// const connectDB = require('./config/db');
 const serverless = require('serverless-http');
 
 // Load env variables
 dotenv.config();
 
 // Connect to MongoDB
-connectDB();
+// connectDB();
 
 const app = express();
 
