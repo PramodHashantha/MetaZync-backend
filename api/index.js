@@ -1,14 +1,14 @@
 const express = require('express');
 const dotenv = require('dotenv');
 const cors = require('cors');
-const connectDB = require('../config/db');
+// const connectDB = require('../config/db');
 const serverless = require('serverless-http');
 
 // Load env variables
 dotenv.config();
 
 // Connect to MongoDB
-connectDB();
+// connectDB();
 
 const app = express();
 
@@ -18,6 +18,10 @@ app.use(express.json());
 // Test route
 app.get('/', (req, res) => {
   res.send('API is running...');
+});
+
+app.get('/api/ping', (req, res) => {
+  res.json({ pong: true });
 });
 
 // API routes
